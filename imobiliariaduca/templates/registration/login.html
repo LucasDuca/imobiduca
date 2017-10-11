@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{%  load pagina_atual %}
+
+{% block content %}
+    <div class="container">
+
+
+        <div class="row" style="margin: 25px 0px 25px 0px">
+
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <div id="loginError">
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            <p>Usuário ou senha incorretos. Tente novamente.</p>
+                        </div>
+                    {% endif %}
+
+
+
+                    {% if next %}
+                        <div class="alert alert-danger">
+                            {% if user.is_authenticated %}
+                                <p>Sua conta não tem acesso a esta página. Para continuar faça login,
+                                    por favor entre com uma conta para continuar.</p>
+                            {% else %}
+                                <p>Por favor entre com o login nessa página.</p>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <td>{{ form.username.label_tag }}</td>
+                        <td>{{ form.username|addclass:'form-control' }}</td>
+                    </div>
+                    <div class="form-group">
+                        <td>{{ form.password.label_tag }}</td>
+                        <td>{{ form.password|addclass:'form-control' }}</td>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-lg btn-success btn-block" value="login" />
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    </div>
+                </form>
+
+                {# Assumes you setup the password_reset view in your URLconf #}
+                <p><a href="{% url 'password_reset' %}">Perdeu a senha?</a></p>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

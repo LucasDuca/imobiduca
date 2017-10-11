@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load humanize pagina_atual static %}
+{% block content %}
+ <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <p class="lead">{{ NOME_CLIENTE }}</p>
+                <div class="list-group">
+                    <a href="#" class="list-group-item">Casas</a>
+                    <a href="#" class="list-group-item">Apartamentos</a>
+                    <a href="#" class="list-group-item">Lojas</a>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image" src="https://www.kinggoya.com/wp/wp-content/uploads/2016/09/domle_kyrka.jpg" width="847" height="331" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="http://www.99graus.com.br/wp-content/uploads/2015/02/Lindas-Casas-107.jpg"  width="847" height="331" alt="">
+                                </div>
+                                <div class="item">
+                                        <img class="slide-image" src="http://www.clubdesoleil.com/wp-content/uploads/2016/08/cll-home-slider-pool2.jpg"  width="847" height="331" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    {% for edi in edificio %}
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="{{ edi.image.url }}" style='width:150px;height:150px' alt=""/>
+                            <div class="caption">
+                                <h4 class="pull-right">R$ {{ edi.valor|floatformat:2|intcomma }}</h4>
+                                <h4><a href="#">{{ edi.nome }}</a>
+                                </h4>
+                                <p>Veja mais detalhes <a target="_blank" href="{% url 'ver_imovel' edi.id %}"> clique aqui</a>.</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right"></p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+{% endblock %}
