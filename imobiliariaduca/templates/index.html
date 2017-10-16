@@ -8,9 +8,9 @@
             <div class="col-md-3">
                 <p class="lead">{{ NOME_CLIENTE }}</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Casas</a>
-                    <a href="#" class="list-group-item">Apartamentos</a>
-                    <a href="#" class="list-group-item">Lojas</a>
+                    <a href="{% url 'listar_casas' %}" class="list-group-item">Casas</a>
+                    <a href="{% url 'listar_apartamentos' %}" class="list-group-item">Apartamentos</a>
+                    <a href="{% url 'listar_lojas' %}" class="list-group-item">Lojas</a>
                 </div>
             </div>
 
@@ -51,7 +51,7 @@
                     {% for edi in edificio %}
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="{{ edi.image.url }}" style='width:150px;height:150px' alt=""/>
+                            <img src="{{ edi.image.url }}" style='width:150px;height:150px'x alt=""/>
                             <div class="caption">
                                 <h4 class="pull-right">R$ {{ edi.valor|floatformat:2|intcomma }}</h4>
                                 <h4><a href="#">{{ edi.nome }}</a>

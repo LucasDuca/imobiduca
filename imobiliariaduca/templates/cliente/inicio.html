@@ -2,13 +2,16 @@
 
 
 {% block content_cliente %}
-    <div class="col-lg-3">
-                <p>Você possui 0 imóveis cadastrados</p>
+    <div class="row" style="padding: 50px 0 0 0;">
+    <div class="col-lg-2">
+                <p>Você possui {{ cadastrados }} imóveis cadastrados</p>
             </div>
-    <div class="col-lg-3">
-                <p>Você possui 0 vendas.</p>
+    <div class="col-lg-2">
+                <p>Você possui {{ vendas }} vendas.</p>
             </div>
-    <div class="col-lg-3">
-                <p>Você possui 0 compras</p>
+    <div class="col-lg-2">
+                <p>Você possui {{ compras }} compras</p>
             </div>
+    </div>
+
 {% endblock %}

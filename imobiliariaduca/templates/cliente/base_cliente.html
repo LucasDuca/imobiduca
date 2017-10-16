@@ -7,9 +7,10 @@
             <div class="col-lg-3">
                 <p class="lead">Menu de Ações</p>
                 <div class="list-group">
+                    <a href="{% url 'inicio' %}" class="list-group-item">Meu início</a>
                     <a href="{% url 'cadastrar_imovel' %}" class="list-group-item">Cadastrar Imóveis</a>
-                    <a href="#" class="list-group-item">Listar Imóveis</a>
-                    <a href="#" class="list-group-item">Sair</a>
+                    <a href="{% url 'listar_imovel' %}" class="list-group-item">Listar Imóveis</a>
+                    <a href="{% url 'logout' %}" class="list-group-item">Sair</a>
                 </div>
             </div>
 

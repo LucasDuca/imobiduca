@@ -5,5 +5,5 @@ from django.shortcuts import render
 
 def ExibirCliente(request):
 
-    return render(request, "cliente.html")
+    return render(request, "cliente/cliente.html")
 

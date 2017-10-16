@@ -1,0 +1,168 @@
+{% extends "cliente/base_cliente.html" %}
+
+
+{% block content_cliente %}
+
+<div class="col-lg-8">
+    <div class="row">
+        <div class="floatL t5 " style="margin: 0 0 20px 0;">
+            <a class="btn btn-primary btn-block" href="{% url 'cadastrar_imovel' %}"><i class="fa fa-plus"></i> &nbsp; Adicionar</a>
+        </div>
+
+
+
+{% if object_list %}
+
+        <div id="example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="dataTables_length" id="example_length">
+                        <label>
+                            <select name="example_length" aria-controls="example" class="form-control input-sm">
+                                <option value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            resultados por página
+                        </label></div>
+                </div>
+                <form action="" method="get"  enctype='multipart/form-data'>
+                    {% csrf_token %}
+                <div class="col-sm-6"><div id="example_filter" class="dataTables_filter">
+                    <label>
+                        Pesquisar
+                        <input name="filter" value="{{ filter }}" class="form-control input-sm" placeholder="" aria-controls="example" type="search">
+                        <input type="submit" name="submit" value="submit"/>
+                    </label>
+                </div>
+                </div>
+                </form>
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+            <table id="example" class="display dataTable no-footer" role="grid" aria-describedby="example_info" style="width: 100%;" width="100%" cellspacing="0">
+            <thead>
+                <tr class="" role="row">
+                    <th class="" style="width: 200px;" aria-sort="ascending" aria-label="Foto: Order">Foto</th>
+                    <th rowspan="1" colspan="1" style="width: 400px;" aria-label="">Nome</th>
+                    <th rowspan="1" colspan="1" style="width: 200px;" aria-label="Valor">Valor</th>
+                    <th rowspan="1" colspan="1" style="width: 342px;" aria-label="Ação">Ação</th>
+                </tr>
+            </thead>
+
+
+        <tbody>
+
+        {% for edificio in object_list %}
+
+        <tr role="row" class="{% if forloop.counter|divisibleby:2 %}even{% else %}odd{% endif %}">
+            <td class="sorting_1"><img src="{{ edificio.image.url }}" style="padding: 10px 0 0 0"  width="150px" height="150px"></td>
+            <td class="">{{ edificio.nome }}</td>
+            <td class="">{{ edificio.valor }}</td>
+            <td>
+                <div class="only-desktops" style="white-space: nowrap">
+                  <div class="btn-group dropdown">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                        Opções
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{% url 'edificio_read' edificio.id %}"><i class="fa fa-eye"></i> Ver</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'edificio_update' edificio.id %}"><i class="fa fa-pencil"></i> Editar</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'edificio_delete' edificio.id %}" title="Deletar" class="delete-row">
+                                <i class="fa fa-trash-o text-danger"></i>
+                                <span class="text-danger">Deletar</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </td></tr>
+        {% endfor %}
+
+
+
+
+
+        </tbody>
+        </table>
+            <div id="example_processing" class="dataTables_processing" style="display: none;">Processando...</div>
+        </div>
+        </div>
+            <div class="row">
+                {% if is_paginated %}
+
+
+                <div class="col-sm-6">
+                    <div class="dataTables_info" id="example_info" role="status" aria-live="polite">
+                        Mostrando {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                    </div>
+                </div>
+                <div class="col-sm-6"><div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    <ul class="pagination">
+
+                    {% if page_obj.has_previous %}
+                        <li class="paginate_button previous" aria-controls="example" tabindex="0" id="example_previous">
+                            <a href="{% url 'listar_imovel' %}?page={{ page_obj.previous_page_number }}">Anterior</a>
+                        </li>
+                    {% endif %}
+
+                        <li class="paginate_button active" aria-controls="example" tabindex="0">
+                            <a href="#">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</a>
+                        </li>
+                        {% if page_obj.has_next %}
+                        <li class="paginate_button next" aria-controls="example" tabindex="0" id="example_next">
+                            <a href="{% url 'listar_imovel' %}?page={{ page_obj.next_page_number }}">Próximo</a>
+                        </li>
+                                {% endif %}
+                    </ul>
+                </div>
+                </div>
+
+                {% endif %}
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+    {# .... **Now the pagination section** .... #}
+
+{% else %}
+    <h3>Meus Edificios</h3>
+    <p>Não existe edificio cadastrado !!! :(</p>
+{% endif %}
+
+{% endblock %}

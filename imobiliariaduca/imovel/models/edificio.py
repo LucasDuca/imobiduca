@@ -1,5 +1,7 @@
 # coding: utf-8
 from django.db import models
+from django.utils.safestring import mark_safe
+
 from imovel.choices import TipoImovel, StatusVenda
 from django.contrib.gis.db import models as models_gis
 from imovel.choices import ESTADOS
@@ -9,7 +11,7 @@ from collections import namedtuple
 
 class Edificio(models.Model):
     nome = models.CharField(blank=False, null=False, max_length=55)
-    dono = models.OneToOneField(User, null=True, blank=True, related_name='proprietario')
+    dono = models.ForeignKey(User, null=True, blank=True, related_name='proprietario')
     image = models.ImageField(upload_to='imovel/images', verbose_name='Imagens')
     valor = models.DecimalField(max_digits=9, decimal_places=2)
     usuario = models.ForeignKey(User, null=True, blank=True)
@@ -39,6 +41,8 @@ class Edificio(models.Model):
     cep = models.CharField(max_length=9, null=False, blank=False)
 
 
+#    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+#        super(Edificio, self).save(force_insert, force_update, using, update_fields)
 
 
 
@@ -48,6 +52,9 @@ class Edificio(models.Model):
     def Meta(self):
         verbose_name = 'Edificio'
         verbose_name_plural = 'Edificios'
+
+    def image_tag(self):
+        return mark_safe('<img src="/static/media/%s" width="150" height="150" />' % (self.image))
 
     def get_image(self, edificio):
         if edificio.image and hasattr(edificio.image, 'url'):
