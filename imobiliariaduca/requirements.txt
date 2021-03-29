@@ -159,7 +159,7 @@ pyexcel-io==0.3.4.1
 pyexcel-webio==0.0.11
 pyexcel-xls==0.3.3
 pyfcm==1.0.7
-Pygments==2.1.3
+Pygments==2.7.4
 pygobject==3.20.0
 PyJWT==1.3.0
 pyOpenSSL==0.15.1
