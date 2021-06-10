@@ -26,7 +26,7 @@ cygwinreg==1.0
 debtags==2.0
 defer==1.0.6
 dirspec==13.10
-Django==1.7.11
+Django==2.2.24
 django-admin-easy==0.2.2.1
 django-adminactions==0.8.5
 django-appconf==1.0.1
