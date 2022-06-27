@@ -187,7 +187,7 @@ qrcode==5.1
 raven==5.32.0
 rb==1.6
 redis==2.10.5
-reportlab==2.7
+reportlab==3.5.55
 requery==0.3.5
 requests==2.9.1
 s3transfer==0.1.10
