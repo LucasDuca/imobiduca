@@ -140,7 +140,7 @@ pbr==1.9.1
 pep8==1.7.0
 percy==0.4.2
 petname==1.7
-pgadmin4==1.6
+pgadmin4==6.17
 Pillow==2.8.1
 piston-mini-client==0.7.5
 pocketsphinx==0.1.3
