@@ -223,7 +223,7 @@ validate-email==1.3
 virtualenv==15.0.1
 websocket-client==0.40.0
 Werkzeug==0.9.6
-wheel==0.29.0
+wheel==0.38.1
 WTForms==2.0.2
 xhtml2pdf==0.0.6
 xlrd==0.9.4
